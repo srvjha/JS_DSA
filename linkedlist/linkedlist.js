@@ -70,6 +70,30 @@ class Node {
    prevNode.next  = newNode
    
  }
+ // ALTERNATIVE SOLUTION WITH TAKING USE OF EXTRA FUNCTION -->
+
+//  LinkedList.prototype.insertAtPostion = function(prevNode,data)
+//  {
+   
+//    if(!prevNode)
+//       {
+//          console.log("The prev node cant be null")
+//          return
+//       }
+   
+//       let current = this.head
+     
+//       while(current)
+//          {  // check for node in linked list
+//             if(current.data===prevNode)
+//                {  
+//                   const newNode = new Node(data,current.next)
+//                   current.next  = newNode                 
+                 
+//                }
+//                current = current.next
+//          }
+//  }
 
  // helper function to pass a node when called with pos
  LinkedList.prototype.getNodeAtPosition = function(pos)
@@ -210,11 +234,11 @@ LinkedList.prototype.reverseLinkedList = function()
 const list = new LinkedList();
 
 // Insert elements
-// list.insertAtBeginning(10);
-// list.insertAtBeginning(20);
-// list.insertAtBeginning(30);
-// list.insertAtEnd(5)
-// list.insertAtEnd(100)
+list.insertAtBeginning(10);
+list.insertAtBeginning(20);
+list.insertAtBeginning(30);
+list.insertAtEnd(5)
+list.insertAtEnd(100)
 // list.insertAtPostion(list.getNodeAtPosition(20),50)
 // list.deletefirstNode()
 // list.deletelastNode()
