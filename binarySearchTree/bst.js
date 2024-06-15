@@ -1,3 +1,5 @@
+ 
+ //import { breadthFirstSearchRecursive } from "./bft.js"
  class BSTNode {
     constructor(key)
     {
@@ -51,15 +53,19 @@
     }
 
     delete(key){
-        this.root = this.deleteNode(this.root,key)
+        console.log("Root Before Deletion: ",this.root)
+        this.root = this.deleteNodeWithInOrderPredecessor(this.root,key)
+        console.log("Root After Deletion: ",this.root)
     }
-
+    //  Following Inorder Successor
     deleteNode(node,key){ // node -> root
        // for node to be null
        if(node===null) return null
+       // First we will search for the key
 
-       if(key < node.key){
+       if(key < node.key){ 
         node.left= this.deleteNode(node.left,key)
+        
        } else if(key > node.key){
         node.right = this.deleteNode(node.right,key)
        } else{
@@ -80,20 +86,159 @@
         // 3. Two node ->In Order Successor (Smallest Key in right subtree)
          else {
             let tempNode = this.findMinNode(node.right)
+            console.log("TempNode: ",tempNode)
             node.key = tempNode.key
+            console.log("Node key: ",node.key)
+            console.log("Node right before: ",node.right)
             node.right = this.deleteNode(node.right, tempNode.key)
+            console.log("Node right: ",node.right)
          }
     }
     return node
 }
+   deleteNodeWithInOrderPredecessor(node,key)
+   {
+    if(node===null) {
+        console.log("Node is Empty!!")
+        return null
+    }
+    if(key<node.key)
+        {
+            node.left = this.deleteNodeWithInOrderPredecessor(node.left,key)
+        }
+    else if(key>node.key)
+        {
+            node.right = this.deleteNodeWithInOrderPredecessor(node.right,key)
+        }
+    else
+    {
+        //1.Check For Leaf Node
+        if(node.left===null && node.right===null) return null
+
+        //2. Check if either of left or right child is present
+        else if(node.left===null) return node.right
+        else if(node.right===null) return node.left
+        // 3, Both childs are present
+        else{
+            // In Order Predecessor(Largest Key in Left Subtree)
+            let tempNode = this.findMaxNode(node.left)
+            console.log("TempNode: ",tempNode)
+            node.key = tempNode
+            console.log("Node: ",node)
+            
+            node.left = this.deleteNodeWithInOrderPredecessor(node.left,tempNode)
+            console.log("Node left: ",node.left)
+            console.log("Node1: ",node)
+        }
+        console.log("New Node: ",node)
+       
+    }
+    return node
+   }
  findMinNode(node)
  {
     while(node.left!==null)
         {
             node = node.left
         }
+        console.log("Find Min Node: ",node)
         return node
   }
+
+  findMaxNode(node)
+ {
+    while(node.right!==null)
+        {
+            node = node.right
+        }
+        console.log("Find Max Node: ",node)
+        return node
+  }
+
+  // Pre-In-Post Order Traversal
+  inorderTraversal()
+  {
+    const result = []
+    this.inorder(this.root,result)
+    return result
+  }
+
+  inorder(node,result)
+  {
+    if(node!==null){
+        this.inorder(node.left,result)
+        result.push(node.key)
+        this.inorder(node.right,result)
+    }
+  }
+
+  preorderTraversal()
+  {
+    const result = []
+    this.preorder(this.root,result)
+    return result
+  }
+
+  preorder(node,result)
+  {
+    if(node!==null){
+        result.push(node.key)
+        this.preorder(node.left,result)       
+        this.preorder(node.right,result)
+    }
+  }
+
+  postorderTraversal()
+  {
+    const result = []
+    this.postorder(this.root,result)
+    return result
+  }
+
+  postorder(node,result)
+  {
+    if(node!==null){
+        this.postorder(node.left,result)        
+        this.postorderorder(node.right,result)
+        result.push(node.key)
+    }
+  }
+
+   breadthFirstSearchRecursive = (root)=>{
+    const values = []
+    if(root===null) return values;
+    
+      const traverseLevel = (nodeLevel)=>{
+        if(nodeLevel.length===0) return
+        const levelVals = []
+        for(let node of nodeLevel)
+            {
+                values.push(node.key)
+                if(node.left!==null) levelVals.push(node.left)
+                if(node.right!==null) levelVals.push(node.right)
+            }
+        traverseLevel(levelVals)
+      }
+      traverseLevel([root])
+      return values
+
+}
+
+treeSumWithBreadthFirstSearch = (root)=>{
+    if(root===null) return ;
+    let totalSum = 0;
+
+    const queue = [root]
+
+    while(queue.length>0)
+    {    
+        const node = queue.shift()
+        totalSum+= node.key
+        if(node.left!==null) queue.push(node.left)
+        if(node.right!==null) queue.push(node.right)
+    }
+     return totalSum
+}
 
     printMe()
     {
@@ -110,11 +255,15 @@
  }
 
  const myBST = new BSTTree()
- myBST.insert(5)
- myBST.insert(10)
- myBST.insert(1)
- myBST.insert(51)
+ myBST.insert(15)
+ myBST.insert(9)
+ myBST.insert(19)
+ myBST.insert(4)
  myBST.insert(12)
- myBST.insert(26)
+ myBST.insert(18)
+ myBST.insert(30)
+ const values = myBST.treeSumWithBreadthFirstSearch(myBST.root)
+ 
+ console.log(values)
 
- myBST.printMe()
+ //myBST.printMe()
