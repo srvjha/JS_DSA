@@ -1,0 +1,1 @@
+ let vowelsCheck = isVowels(string[stringLength-1])

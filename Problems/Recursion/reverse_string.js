@@ -20,11 +20,16 @@ const reverseString = (string)=>{
 
 const reverseStringRecursive = (string)=>{
     // Base Case
+    console.log("Current String: ",string)
     if(string==="") return string
-     let reverse = string[string.length-1]
-     reverse = reverse + reverseStringRecursive(string.substring(0,string.length-1))
-    console.log("Reverse: ",reverse)
-    return reverse;
+    
+    let reversePart =  reverseStringRecursive(string.substring(0,string.length-1))
+    let result = string[string.length-1] + reversePart
+
+    console.log(`Reversing: Last Char ${string[string.length-1]} added in front of ${reversePart} to form a result:${result}`)
+
+    return result
+    
 }
 
 console.log(reverseStringRecursive("hello"))
