@@ -30,8 +30,8 @@ const depthFirstTraversal = (root)=>{
 const depthFirstTraversalRecursive = (root)=>{
     if(root===null) return
 
-    const leftValues = depthFirstTraversal(root.left)
-    const RightValues = depthFirstTraversal(root.right)
+    const leftValues = depthFirstTraversalRecursive(root.left)
+    const RightValues = depthFirstTraversalRecursive(root.right)
 
     // return [root.key,leftValues,RightValues]
     // output:- [a,[b,c,d],[e,f,g]]

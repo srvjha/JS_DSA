@@ -20,5 +20,6 @@ const treeSumWithBreadthFirstSearch = (root)=>{
 
 const treeSumWithDepthFirstSearch = (root)=>{
     if(root===null) return 0
+    console.log("KEY: ",root.key)
     return root.key+treeSumWithDepthFirstSearch(root.left)+treeSumWithDepthFirstSearch(root.right)
 }

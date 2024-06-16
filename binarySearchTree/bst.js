@@ -204,6 +204,17 @@
     }
   }
 
+  depthFirstTraversalRecursive = (root)=>{
+    if(root===null) return [];
+
+    // const leftValues = this.depthFirstTraversalRecursive(root.left)
+    // const RightValues = this.depthFirstTraversalRecursive(root.right)
+
+   
+    return [root.key,...this.depthFirstTraversalRecursive(root.left),...this.depthFirstTraversalRecursive(root.right)]
+    
+}
+
    breadthFirstSearchRecursive = (root)=>{
     const values = []
     if(root===null) return values;
@@ -224,21 +235,13 @@
 
 }
 
-treeSumWithBreadthFirstSearch = (root)=>{
-    if(root===null) return ;
-    let totalSum = 0;
-
-    const queue = [root]
-
-    while(queue.length>0)
-    {    
-        const node = queue.shift()
-        totalSum+= node.key
-        if(node.left!==null) queue.push(node.left)
-        if(node.right!==null) queue.push(node.right)
-    }
-     return totalSum
+treeSumWithDepthFirstSearch = (root)=>{
+    if(root===null) return 0;    
+    console.log("key: ",root.key)   
+    return root.key+this.treeSumWithDepthFirstSearch(root.left)+this.treeSumWithDepthFirstSearch(root.right)
 }
+
+
 
     printMe()
     {
@@ -262,7 +265,7 @@ treeSumWithBreadthFirstSearch = (root)=>{
  myBST.insert(12)
  myBST.insert(18)
  myBST.insert(30)
- const values = myBST.treeSumWithBreadthFirstSearch(myBST.root)
+ const values = myBST.depthFirstTraversalRecursive(myBST.root)
  
  console.log(values)
 
