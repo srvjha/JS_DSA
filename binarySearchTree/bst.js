@@ -54,7 +54,7 @@
 
     delete(key){
         console.log("Root Before Deletion: ",this.root)
-        this.root = this.deleteNodeWithInOrderPredecessor(this.root,key)
+        this.root = this.deleteNode(this.root,key)
         console.log("Root After Deletion: ",this.root)
     }
     //  Following Inorder Successor
@@ -265,8 +265,9 @@ treeSumWithDepthFirstSearch = (root)=>{
  myBST.insert(12)
  myBST.insert(18)
  myBST.insert(30)
- const values = myBST.depthFirstTraversalRecursive(myBST.root)
+//  const values = myBST.depthFirstTraversalRecursive(myBST.root)
  
- console.log(values)
+//  console.log(values)
+myBST.delete(15)
 
- //myBST.printMe()
+ myBST.printMe()
