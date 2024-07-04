@@ -229,7 +229,6 @@ LinkedList.prototype.reverseLinkedList = function()
       this.head = prev
 }
 
-
 // Create a new LinkedList instance
 const list = new LinkedList();
 

@@ -16,4 +16,4 @@ function gcd(num1,num2)
 }
 
 
-console.log(gcd(42,56)) //output:14
+console.log(gcd(6,4)) //output:14
