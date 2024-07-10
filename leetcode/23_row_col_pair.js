@@ -20,6 +20,8 @@ var equalPairs = function(grid) {
 
     for(let i=0;i<n;i++){
         const rowStr = grid[i].join(',')
+        console.log("gird: ",grid[i])
+        console.log("rowStr: ",rowStr)
         rowMap.set(rowStr,(rowMap.get(rowStr) || 0) + 1)
     }
 
@@ -32,6 +34,7 @@ var equalPairs = function(grid) {
             colArr.push(grid[i][j])
         }
         const colStr = colArr.join(',')
+        console.log("colStr: ",colStr)
         if(rowMap.has(colStr)) {
             count+=rowMap.get(colStr)
         }
@@ -39,3 +42,5 @@ var equalPairs = function(grid) {
 
     return count;
 };
+
+console.log(equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
