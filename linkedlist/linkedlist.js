@@ -99,6 +99,7 @@ class Node {
  LinkedList.prototype.getNodeAtPosition = function(pos)
  {
    let currentVal = this.head
+   console.log(currentVal)
 
    // currentVal => this.head => uska data===pos agr hai toh return currentVal nhi toh currentVal mein currentVal.next
    
@@ -157,7 +158,8 @@ LinkedList.prototype.deletelastNode = function()
 }
 
 LinkedList.prototype.deleteNodeAtGivenKey = function(key)
-{
+{ 
+   console.log("key: ",key)
    if(!this.head)
       {  
          console.log("Cant Delete Linked List is Empty!")
@@ -241,14 +243,14 @@ list.insertAtEnd(100)
 // list.insertAtPostion(list.getNodeAtPosition(20),50)
 // list.deletefirstNode()
 // list.deletelastNode()
-// list.deleteNodeAtGivenKey(list.getNodeAtPosition(50))
+list.deleteNodeAtGivenKey(list.getNodeAtPosition(30))
 // list.searchNodeAtGivenKey(100)
 
-console.log("Original linked list: ")
-list.printList();
-list.reverseLinkedList()
+// console.log("Original linked list: ")
+// list.printList();
+// list.reverseLinkedList()
 
-console.log("Reversed linked list: ")
+// console.log("Reversed linked list: ")
 // Print the list to verify
 list.printList();
   
