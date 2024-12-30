@@ -40,7 +40,7 @@ function gcdStrings(str1,str2){
     
 // }
 
-console.log(gcdStrings("ABCDEF","ABC"))
+console.log(gcdStrings("ABCDE","ABC"))
 
 function gcdOfStrings(str1,str2){
     // base case
